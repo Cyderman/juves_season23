@@ -7,6 +7,9 @@ def load_data():
     return pd.read_csv('test1201.csv')
 
 def main():
+    # Set Streamlit to wide mode
+    st.set_page_config(layout="wide")
+
     st.title("Horse Racing Data Viewer")
 
     # Load the data
@@ -46,10 +49,14 @@ def main():
     # Paginate data
     rows_per_page = 50
     total_rows = len(filtered_data)
-    total_pages = (total_rows // rows_per_page) + (total_rows % rows_per_page > 0)
+    total_pages = max((total_rows // rows_per_page) + (total_rows % rows_per_page > 0), 1)
 
     # Select page
-    page = st.slider("Page", 1, total_pages, 1)
+    if total_pages > 1:
+        page = st.slider("Page", 1, total_pages, 1)
+    else:
+        page = 1
+
     start_row = (page - 1) * rows_per_page
     end_row = start_row + rows_per_page
 
