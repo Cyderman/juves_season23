@@ -10,7 +10,7 @@ def main():
     # Set Streamlit to wide mode
     st.set_page_config(layout="wide")
 
-    st.title("Horse Racing Data Viewer")
+    st.title("Season 23 Juveniles")
 
     # Load the data
     data = load_data()
